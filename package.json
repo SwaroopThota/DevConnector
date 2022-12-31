@@ -4,9 +4,10 @@
   "description": "Social media for developers",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Swaroop Thota",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "axios": "^0.26.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-validator": "^6.14.0",
     "gravatar": "^1.8.2",

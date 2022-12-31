@@ -12,16 +12,16 @@ const jsonwebtoken = require("jsonwebtoken");
 //@access pirvate
 router.get("/", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.userId).select("-password");
+    const user = await User.findById(req.userId).select("-password -date -__v");
     return res.json(user);
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ msg: "Internal Server Error" });
+    return res.status(500).json({errors: [{ msg: "Internal Server Error" }]});
   }
 });
 
 //@method POST /api/auth
-//@desc Create user
+//@desc login a user
 //@access public
 router.post(
   "/",
@@ -55,7 +55,7 @@ router.post(
       res.json({ token });
     } catch (err) {
       console.log(err);
-      return res.status(500).send("Internal Server Error");
+      return res.status(500).json({errors: [{ msg: "Internal Server Error" }]});
     }
   }
 );
